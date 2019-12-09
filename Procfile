@@ -1,2 +1,2 @@
 
-web: bundle exec contact server -p $PORT
+web: bundle exec contact server -p $PORT 4313
