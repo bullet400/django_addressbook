@@ -25,7 +25,7 @@ SECRET_KEY = '_vgfb^lqo60kyc(sds9b@s7v0)p(sm4a_190qf56$dht5*rx%7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bullet400.herokuapp.com']
 
 
 # Application definition
