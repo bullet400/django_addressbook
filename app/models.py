@@ -25,3 +25,6 @@ class Contact(models.Model):
     def fullname(self):
         fullname= self.firstname +" "+self.middlename+" " +self.lastname
         return fullname
+
+    def user_email(self):
+        return self.email[10]

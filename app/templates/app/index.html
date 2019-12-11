@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
+ {% block title %}
+    Detailed 
+ {% endblock title %}
 {% block content %}
     <h6 class="heading font-weight-light">Here are the list of contact</h6>
 {{status}} {{age}}<p class="d-block font-weight-light my-2 heading"> Current time is {% now 'Y-m-d, H:m:s' %}</p>
@@ -9,7 +12,7 @@
    {% include 'partials/_card.html' %}
   
   {% endfor %}
-  
+ 
   {% else %}
   <h3>No contacts in the dictionary</h3>
               {% endif %}

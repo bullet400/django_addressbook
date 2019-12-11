@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
 
@@ -38,7 +39,6 @@ class ContactDetailsView(LoginRequiredMixin,DetailView):
     model = Contact
     context_object_name = 'contacts'
     
-
 
 #@login_required
 class SearchView(LoginRequiredMixin, ListView):
@@ -80,6 +80,7 @@ class ContactCreateViews(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.Manager =self.request.user
         instance.save()
+        messages.success(self.request,'Congatulations!!, Your contact has been saved successfully')
         return redirect('/home')
 
 class ContactUpdateViews(LoginRequiredMixin, UpdateView):
@@ -89,6 +90,7 @@ class ContactUpdateViews(LoginRequiredMixin, UpdateView):
     
     def form_valid(self, form):
         instance =form.save()
+        messages.success(self.request,'Congatulations!!, Your contact has been successfully updated')
         return redirect('detail', instance.pk)
 
 
@@ -96,6 +98,10 @@ class ContactDeleteView(LoginRequiredMixin,DeleteView):
     model = Contact
     template_name ='app/delete.html'
     success_url ='/home'
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'You have finally deleted the contact!')
+        return super().delete(self, request, *args, **kwargs)
 
 class SignUpView(CreateView):
     form_class =UserCreationForm
